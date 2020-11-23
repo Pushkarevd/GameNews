@@ -1,1 +1,1 @@
-web: gunicorn smithee.wsgi
+web: gunicorn wsgi.wsgi
