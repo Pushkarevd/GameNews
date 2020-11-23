@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 
-from games.views import MainPage, StopGameNewsView, IgnNewsView, IgnHeadlineView, StopGameHeadlineView
+from games.views import MainPage, StopGameNewsView, IgnNewsView, IgnHeadlineView, StopGameHeadlineView, MainPageNewsView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -11,4 +11,5 @@ urlpatterns = [
     path('ignnews/<int:id>', IgnHeadlineView.as_view()),
     path('ignnews/', IgnNewsView.as_view()),
     path('stopgamenews/<int:id>', StopGameHeadlineView.as_view()),
+    path('mainpagenews/<int:id>', MainPageNewsView.as_view()),
 ]

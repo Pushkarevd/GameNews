@@ -1,5 +1,3 @@
-import time
-
 from django.db import IntegrityError
 from django.http import Http404
 from django.shortcuts import render, redirect
@@ -7,7 +5,7 @@ from django.views import View
 
 from games.ignparse import ign_get_news, ign_headline_parse
 from games.models import StopGameHeadline, IgnHeadline
-from games.stopgameparser import stopgame_get_news, get_img, stopgame_headline
+from games.stopgameparser import stopgame_get_news, stopgame_headline
 
 
 def make_update():
@@ -52,6 +50,17 @@ class IgnNewsView(View):
         return render(request, "news.html", {"news": news, "flag": "ignnews/"})
 
 
+class MainPageNewsView(View):
+    def get(self, request, id):
+        try:
+            headline = StopGameHeadline.objects.get(id=id)
+        except IgnHeadline.DoesNotExist:
+            raise Http404
+        html = stopgame_headline(headline.news_url)
+
+        return render(request, "ignheadline.html", {"title": html[0].prettify(), "article": html[1].prettify()})
+
+
 class IgnHeadlineView(View):
     def get(self, request, id):
         if not request.user.is_authenticated:
@@ -64,6 +73,7 @@ class IgnHeadlineView(View):
 
         return render(request, "ignheadline.html", {"html": html})
 
+
 class StopGameHeadlineView(View):
     def get(self, request, id):
         if not request.user.is_authenticated:
@@ -75,5 +85,3 @@ class StopGameHeadlineView(View):
         html = stopgame_headline(headline.news_url)
 
         return render(request, "ignheadline.html", {"title": html[0].prettify(), "article": html[1].prettify()})
-
-

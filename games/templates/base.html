@@ -8,12 +8,12 @@
           integrity="sha384-nNK9n28pDUDDgIiIqZ/MiyO3F4/9vsMtReZK39klb/MtkZI3/LtjSjlmyVPS3KdN" crossorigin="anonymous">
     <style type="text/css">
         img {
-    display: block;
-    max-width:1100px;
-    max-height:330px;
-    width: auto;
-    height: auto;
-}
+            display: block;
+            max-width: 1100px;
+            max-height: 330px;
+            width: auto;
+            height: auto;
+        }
     </style>
 </head>
 <body>
@@ -27,7 +27,8 @@
     <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
         <ul class="navbar-nav col-10">
             <li class="nav-item">
-                <a class="nav-link" href="/stopgamenews" class="text-dark">{% if user.is_authenticated %}StopGame новости{% endif %}</a>
+                <a class="nav-link" href="/stopgamenews" class="text-dark">{% if user.is_authenticated %}StopGame
+                    новости{% endif %}</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/ignnews" class="text-dark">IGN новости</a>
