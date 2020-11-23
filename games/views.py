@@ -2,7 +2,7 @@ import time
 
 from django.db import IntegrityError
 from django.http import Http404
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 
 from games.ignparse import ign_get_news, ign_headline_parse
@@ -38,18 +38,24 @@ class MainPage(View):
 
 class StopGameNewsView(View):
     def get(self, request):
+        if not request.user.is_authenticated:
+            return redirect("home")
         news = StopGameHeadline.objects.order_by("-id").values()[:8]
         return render(request, "news.html", {"news": news, "flag": "stopgamenews/"})
 
 
 class IgnNewsView(View):
     def get(self, request):
+        if not request.user.is_authenticated:
+            return redirect("home")
         news = IgnHeadline.objects.order_by("-id").values()[:8]
         return render(request, "news.html", {"news": news, "flag": "ignnews/"})
 
 
 class IgnHeadlineView(View):
     def get(self, request, id):
+        if not request.user.is_authenticated:
+            return redirect("home")
         try:
             headline = IgnHeadline.objects.get(id=id)
         except IgnHeadline.DoesNotExist:
@@ -60,6 +66,8 @@ class IgnHeadlineView(View):
 
 class StopGameHeadlineView(View):
     def get(self, request, id):
+        if not request.user.is_authenticated:
+            return redirect("home")
         try:
             headline = StopGameHeadline.objects.get(id=id)
         except IgnHeadline.DoesNotExist:
