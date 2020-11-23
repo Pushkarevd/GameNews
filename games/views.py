@@ -1,3 +1,5 @@
+import time
+
 from django.db import IntegrityError
 from django.http import Http404
 from django.shortcuts import render
@@ -65,3 +67,5 @@ class StopGameHeadlineView(View):
         html = stopgame_headline(headline.news_url)
 
         return render(request, "ignheadline.html", {"title": html[0].prettify(), "article": html[1].prettify()})
+
+
