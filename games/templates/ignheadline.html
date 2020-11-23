@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
 {% block container %}
+<div class="row  mt-2  d-flex justify-content-center">
+<div class="card mb-3 mx-3 border-light " style="max-width: 800px;">
+<div class="row no-gutters">
 {{ titile|safe }}
 {{ article|safe }}
 {{ html|safe }}
+</div>
+</div>
+</div>
 {% endblock %}
