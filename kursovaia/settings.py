@@ -6,7 +6,9 @@ SECRET_KEY = 'qn1z^avu3xvn84u(&g1mzx9m8k%m@*l1nbrasu2p3^hj=z&c4v'
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+STATIC_ROOT = 'static'
+
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
