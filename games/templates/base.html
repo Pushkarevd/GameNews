@@ -19,7 +19,7 @@
 <body>
 <header class="container mtb-3"></header>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand mr-4" href="/" class="text-dark">{% if user.is_authenticated %}GameNews{% endif %}</a>
+    <a class="navbar-brand mr-4" href="/" class="text-dark">GameNews</a>
     <button aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
             type="button">
         <span class="navbar-toggler-icon"></span>
@@ -31,7 +31,7 @@
                     новости{% endif %}</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/ignnews" class="text-dark">IGN новости</a>
+                <a class="nav-link" href="/ignnews" class="text-dark">{% if user.is_authenticated %}IGN новости{% endif %}</a>
             </li>
         </ul>
         <ul class="navbar-nav col-2 justify-content-end">
