@@ -36,7 +36,8 @@ def stopgame_headline(url):
     html = requests.get(url).text
     soup = BeautifulSoup(html, "html.parser")
 
-    title = soup.find("section", {"class": "article-header"})
+    title = soup.find("h1", {"class": "article-title"})
+    print(title)
     headline = soup.find("section", {"class": "article"})
 
     return (title, headline)
