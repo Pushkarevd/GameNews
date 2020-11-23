@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GameNews</title>
+    <meta content="width=device-width, initial-scale=1.0, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/darkly/bootstrap.min.css"
+          integrity="sha384-nNK9n28pDUDDgIiIqZ/MiyO3F4/9vsMtReZK39klb/MtkZI3/LtjSjlmyVPS3KdN" crossorigin="anonymous">
+    <style type="text/css">
+        inline {
+            display: inline;
+        }
+
+        link-button {
+            background: none;
+            border: none;
+            color: blue;
+            text-decoration: underline;
+            cursor: pointer;
+            font-size: 1em;
+            font-family: serif;
+        }
+
+        link-button:focus {
+            outline: none;
+        }
+
+        link-button:active {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<header class="container mtb-3"></header>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand mr-4" href="/" class="text-dark">GameNews</a>
+    <button aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
+            type="button">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+        <ul class="navbar-nav col-10">
+            <li class="nav-item">
+                <a class="nav-link" href="/stopgamenews" class="text-dark">StopGame новости</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/ignnews" class="text-dark">IGN новости</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav col-2 justify-content-end">
+            {% if user.is_authenticated %}
+                <li class="nav-item active">
+                    <p>Добро пожаловать {{ user.username }}</p>
+                    <a href="/accounts/logout/" style="color:red"><p>Выйти</p></a>
+                </li>
+            {% else %}
+                <li class="nav-item active">
+                    <a class="nav-link font-weight-bold" href="/accounts/login">Вход</a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+{% block container %} {% endblock %}
+<footer style="background-color:#222222; margin-top: 100px">
+    <p class="text-center" style="color:#4d5861; font-size:50%">2020-GameNews.com</p>
+    <p class="text-center" style="color:#4d5861; font-size:50%">Можете использовать любые материалы без согласования с
+        администрацией.</p>
+    <a href="https://github.com/Pushkarevd" style="color:#4d5861; font-size:50%"><p class="text-center">Создатель.</p>
+    </a>
+</footer>
+</body>
+</html>

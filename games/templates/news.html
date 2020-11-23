@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block container %}
+    <div class="row  mt-2  d-flex justify-content-center">
+        {% for headline in news %}
+            <div class="card mb-3 mx-3 border-light" style="max-width: 540px;">
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                        <img src="{{ headline.img_url }}" class="card-img" style="border-radius: 25px">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ headline.title }}</h5>
+                            <a href="/{{ flag }}{{ headline.id }}"><p class="card-text">{{ headline.desc }}</p></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

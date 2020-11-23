@@ -1,0 +1,36 @@
+{% extends 'base_account.html' %}
+
+{% block container %}
+    <div class="col d-flex justify-content-center" style="margin-top:100px">
+        <div class="card mt-4" style="width: 30rem;">
+            <div class="card-body">
+                <h4 class="card-title" style="text-align: center">Регистрация</h4>
+                <form method="POST" action="">
+                    <div class="form-label-group">
+                        <div class="text-center b-1">
+                            {% csrf_token %}
+                            <div class=" form-label-group"><p>Имя пользователя</p></div>
+                            <div class=" form-label-group"><input type="text" name="username" class="form-control">
+                            </div>
+                            <div class=" form-label-group"><p>Пароль</p></div>
+                            <div class=" form-label-group"><input type="text" name="password" class="form-control">
+                            </div>
+                            <div class="position-relative" style="left:110px">
+                                <input type="submit" name="Create User" style="margin-top: 10px; width: 50%"
+                                       class="btn btn-primary btn-block">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="d-flex justify-content-center links" style="margin-top:20px">
+                    {% for message in messages %}
+                        <p id="messages">{{ message }}</p>
+                    {% endfor %}
+                </div>
+                <div class="d-flex justify-content-center links" style="margin-top:10px">
+                    Нет аккаунта?<a href="/accounts/signup" class="ml-2">Регистрация!</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

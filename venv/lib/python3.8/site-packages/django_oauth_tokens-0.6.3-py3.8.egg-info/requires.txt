@@ -1,0 +1,8 @@
+django
+requests
+requests_oauthlib
+beautifulsoup4
+django-taggit
+django-annoying
+distributedlock
+simplejson
