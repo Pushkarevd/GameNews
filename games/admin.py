@@ -4,11 +4,11 @@ from .models import StopGameHeadline, IgnHeadline
 
 
 class StopGameAdmin(admin.ModelAdmin):
-    pass
+    fields = ('id', 'desc')
 
 
 class IgnAdmin(admin.ModelAdmin):
-    pass
+    fields = ('id', 'title', 'desc')
 
 
 admin.site.register(StopGameHeadline, StopGameAdmin)

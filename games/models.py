@@ -8,6 +8,10 @@ class StopGameHeadline(models.Model):
     news_url = models.URLField(max_length=256, primary_key=True)
     id = models.IntegerField(default=None)
 
+    class Meta:
+        verbose_name = 'Статья StopGame'
+        verbose_name_plural = 'Статьи StopGame'
+
 
 class IgnHeadline(models.Model):
     title = models.CharField(max_length=256)
@@ -15,3 +19,8 @@ class IgnHeadline(models.Model):
     news_url = models.URLField(max_length=256, primary_key=True)
     desc = models.CharField(max_length=256)
     id = models.IntegerField(default=None)
+
+    class Meta:
+        verbose_name = 'Статья IGN'
+        verbose_name_plural = 'Статьи IGN'
+        
