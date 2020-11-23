@@ -32,19 +32,19 @@ def make_update():
 class MainPage(View):
     def get(self, request):
         make_update()
-        imgs = StopGameHeadline.objects.values()[:5]
+        imgs = StopGameHeadline.objects.order_by("-id").values()[:5]
         return render(request, "index.html", {"imgs": imgs})
 
 
 class StopGameNewsView(View):
     def get(self, request):
-        news = StopGameHeadline.objects.values()[:8]
+        news = StopGameHeadline.objects.order_by("-id").values()[:8]
         return render(request, "news.html", {"news": news, "flag": "stopgamenews/"})
 
 
 class IgnNewsView(View):
     def get(self, request):
-        news = IgnHeadline.objects.values()[:8]
+        news = IgnHeadline.objects.order_by("-id").values()[:8]
         return render(request, "news.html", {"news": news, "flag": "ignnews/"})
 
 
