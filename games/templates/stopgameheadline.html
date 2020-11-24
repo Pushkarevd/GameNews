@@ -3,7 +3,8 @@
     <div class="row  mt-2  d-flex justify-content-center">
         <div class="card mb-3 mx-3 border-light" style="max-width: 800px;">
             <div class="card-body img-responsive">
-                {{ html|safe }}
+                {{ title|safe }}
+                {{ article|safe }}
             </div>
         </div>
     </div>
@@ -22,11 +23,11 @@
                     </div>
                 </form>
             {% endif %}
-            {% if not headline.comments_ign.all %}
+            {% if not headline.comments_sg.all %}
                 <p>Ещё никто не осталвлял комментарий...</p>
             {% else %}
                 <br>
-                {% for comment in headline.comments_ign.all %}
+                {% for comment in headline.comments_sg.all %}
                     <div class="row mx-3">
                         <div class="card border-light" style="width: 400px">
                             <strong>Пользователь: {{ comment.author }}</strong>

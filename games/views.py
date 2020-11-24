@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from django.views import View
 
 from games.ignparse import ign_get_news, ign_headline_parse
-from games.models import StopGameHeadline, IgnHeadline
+from games.models import StopGameHeadline, IgnHeadline, Comment_StopGame, Comment_IGN
 from games.stopgameparser import stopgame_get_news, stopgame_headline
 
 
@@ -46,7 +46,7 @@ class IgnNewsView(View):
     def get(self, request):
         if not request.user.is_authenticated:
             return redirect("home")
-        news = IgnHeadline.objects.order_by("-id").values()[:8]
+        news = IgnHeadline.objects.order_by("-id").values()[:8:-1]
         return render(request, "news.html", {"news": news, "flag": "ignnews/"})
 
 
@@ -71,7 +71,14 @@ class IgnHeadlineView(View):
             raise Http404
         html = ign_headline_parse(headline.news_url).prettify()
 
-        return render(request, "ignheadline.html", {"html": html})
+        return render(request, "ignheadline.html", {"html": html,
+                                                    "headline": IgnHeadline.objects.get(id=id)})
+
+    def post(self, request, id):
+        text = request.POST.get("text")
+        id = id
+        Comment_IGN.objects.create(text=text, author=request.user, headline=IgnHeadline.objects.get(id=id))
+        return redirect(request.path)
 
 
 class StopGameHeadlineView(View):
@@ -84,4 +91,12 @@ class StopGameHeadlineView(View):
             raise Http404
         html = stopgame_headline(headline.news_url)
 
-        return render(request, "ignheadline.html", {"title": html[0].prettify(), "article": html[1].prettify()})
+        return render(request, "stopgameheadline.html", {"title": html[0].prettify(), "article": html[1].prettify(),
+                                                    "headline": StopGameHeadline.objects.get(id=id)})
+
+    def post(self, request, id):
+        text = request.POST.get("text")
+        id = id
+        Comment_StopGame.objects.create(text=text, author=request.user, headline=StopGameHeadline.objects.get(id=id))
+        return redirect(request.path)
+
