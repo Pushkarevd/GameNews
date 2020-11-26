@@ -44,5 +44,6 @@ class Comment_IGN(models.Model):
         verbose_name = "Комментарий IGN"
         verbose_name_plural = "Комментарии IGN"
 
+
 class Comment(models.Model):
     pass

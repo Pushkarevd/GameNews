@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.models import User
 
-from .models import StopGameHeadline, IgnHeadline, Comment, Comment_StopGame, Comment_IGN
+from .models import StopGameHeadline, IgnHeadline, Comment_StopGame, Comment_IGN
 
 
 class StopGameAdmin(admin.ModelAdmin):

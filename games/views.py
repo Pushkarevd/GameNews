@@ -60,6 +60,12 @@ class MainPageNewsView(View):
 
         return render(request, "stopgameheadline.html", {"title": html[0].prettify(), "article": html[1].prettify()})
 
+    def post(self, request, id):
+        text = request.POST.get("text")
+        id = id
+        Comment_StopGame.objects.create(text=text, author=request.user, headline=StopGameHeadline.objects.get(id=id))
+        return redirect(request.path)
+
 
 class IgnHeadlineView(View):
     def get(self, request, id):
@@ -92,11 +98,10 @@ class StopGameHeadlineView(View):
         html = stopgame_headline(headline.news_url)
 
         return render(request, "stopgameheadline.html", {"title": html[0].prettify(), "article": html[1].prettify(),
-                                                    "headline": StopGameHeadline.objects.get(id=id)})
+                                                         "headline": StopGameHeadline.objects.get(id=id)})
 
     def post(self, request, id):
         text = request.POST.get("text")
         id = id
         Comment_StopGame.objects.create(text=text, author=request.user, headline=StopGameHeadline.objects.get(id=id))
         return redirect(request.path)
-
