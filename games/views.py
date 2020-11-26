@@ -58,7 +58,7 @@ class MainPageNewsView(View):
             raise Http404
         html = stopgame_headline(headline.news_url)
 
-        return render(request, "stopgameheadline.html", {"title": html[0].prettify(), "article": html[1].prettify()})
+        return render(request, "stopgameheadline.html", {"title": html[0].prettify(), "article": html[1].prettify(), "headline": StopGameHeadline.objects.get(id=id)})
 
     def post(self, request, id):
         text = request.POST.get("text")
