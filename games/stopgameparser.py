@@ -10,7 +10,7 @@ def stopgame_get_news():
 
     headlines = []
     for number, news in enumerate(soup.find_all("div", {"class": "item article-summary"})):
-        img_src = news.find("div", {"class": "image lazy"}).get("data-src")
+        img_src = news.find("img", {"class": "image-16x9"})
         desc = news.find("div", {"class": "caption caption-bold"}).get_text()
         url = "https://stopgame.ru" + news.find("div", {"class": "caption caption-bold"}).a.get("href")
         headlines.append({"img": img_src, "desc": desc, "url": url})
@@ -25,7 +25,7 @@ def get_img():
 
     imgs = []
     for number, news in enumerate(soup.find_all("div", {"class": "item article-summary"})):
-        img_src = news.find("div", {"class": "image lazy"}).get("data-src")
+        img_src = news.find("img", {"class": "image-16x9"})
         imgs.append(img_src)
         if number == 5:
             break
